@@ -91,6 +91,20 @@
     <Content Include="img\favicon.png" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="font\fontawesome-webfont.eot" />
+    <Content Include="font\FontAwesome.otf" />
+    <Content Include="font\fontawesome-webfont.ttf" />
+    <Content Include="font\fontawesome-webfont.woff" />
+    <Content Include="font\iconic_fill.eot" />
+    <Content Include="font\iconic_fill.otf" />
+    <Content Include="font\iconic_fill.svg" />
+    <Content Include="font\iconic_fill.ttf" />
+    <Content Include="font\iconic_fill.woff" />
+    <Content Include="font\iconic_stroke.eot" />
+    <Content Include="font\iconic_stroke.otf" />
+    <Content Include="font\iconic_stroke.svg" />
+    <Content Include="font\iconic_stroke.ttf" />
+    <Content Include="font\iconic_stroke.woff" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -131,21 +145,5 @@
     <Folder Include="modules\" />
     <Folder Include="font\" />
     <Folder Include="img\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="font\FontAwesome.otf" />
-    <None Include="font\fontawesome-webfont.eot" />
-    <None Include="font\fontawesome-webfont.ttf" />
-    <None Include="font\fontawesome-webfont.woff" />
-    <None Include="font\iconic_fill.eot" />
-    <None Include="font\iconic_fill.otf" />
-    <None Include="font\iconic_fill.svg" />
-    <None Include="font\iconic_fill.ttf" />
-    <None Include="font\iconic_fill.woff" />
-    <None Include="font\iconic_stroke.eot" />
-    <None Include="font\iconic_stroke.otf" />
-    <None Include="font\iconic_stroke.svg" />
-    <None Include="font\iconic_stroke.ttf" />
-    <None Include="font\iconic_stroke.woff" />
   </ItemGroup>
 </Project>
