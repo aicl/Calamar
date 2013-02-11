@@ -53,11 +53,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Aicl.RegistroIngresosEgresos.DAL\Aicl.Calamar.DAL.csproj">
+    <ProjectReference Include="..\Aicl.Calamar.DAL\Aicl.Calamar.DAL.csproj">
       <Project>{7C737EC8-6D80-487E-B9EB-FE65C6697032}</Project>
       <Name>Aicl.Calamar.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aicl.RegistroIngresosEgresos.Modelos\Aicl.Calamar.Modelos.csproj">
+    <ProjectReference Include="..\Aicl.Calamar.Modelos\Aicl.Calamar.Modelos.csproj">
       <Project>{58219463-D62D-47BD-9676-C0C6489A7226}</Project>
       <Name>Aicl.Calamar.Modelos</Name>
     </ProjectReference>
