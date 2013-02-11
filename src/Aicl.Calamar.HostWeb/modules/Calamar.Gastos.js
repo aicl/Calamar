@@ -114,7 +114,7 @@
 							Cayita.UI.Div.createAlertErrorAfter(Cayita.UI.Div.element(this.get_$searchDiv()), 'Digite una fecha valida');
 							return;
 						}
-						this.$loadGastos(inputFecha.value);
+						this.$loadGastos(cayita.fn.toServerDate(inputFecha.value));
 					}));
 				}));
 				this.set_$bNew(Cayita.UI.IconButton.$ctor(searchdiv, Function.mkdel(this, function(abn1, ibn1) {
@@ -330,7 +330,6 @@
 				return f.Id === data.Id;
 			});
 			cayita.fn.populateFrom(gasto, data);
-			//gasto.Descripcion= data.Descripcion;
 			Cayita.UI.Ext.updateRow(Calamar.Model.Gasto).call(null, Cayita.UI.HtmlTable.element(this.get_$tableGastos()), gasto, this.get_$columns(), 'Id');
 			Cayita.UI.ButtonBase.element(this.get_$bList()).disabled = true;
 			Cayita.UI.ElementBase.hide(this.get_$formDiv());
