@@ -55,7 +55,7 @@ namespace Aicl.Calamar.HostWeb
 			double se= appSettings.Get("DefaultSessionExpiry", 480);
 			AuthProvider.DefaultSessionExpiry=TimeSpan.FromMinutes(se);         
 			
-			string cacheHost= appSettings.Get("REDISTOGO_URL","localhost:6379").Replace("redis://redistogo-appharbor:","").Replace("/","");
+			string cacheHost= appSettings.Get("REDISTOGO_URL","localhost:6379").Replace("redis://redistogo:","").Replace("/","");
 			
 			var redisClientManager = new BasicRedisClientManager(new string[]{cacheHost});
 			
