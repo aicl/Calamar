@@ -80,6 +80,17 @@
     <Content Include="css\bootstrap-responsive.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\font-awesome.min.css" />
+    <Content Include="modules\Calamar.Conceptos.js" />
+    <Content Include="modules\Calamar.Fuentes.js" />
+    <Content Include="modules\Calamar.Gastos.js" />
+    <Content Include="img\apple-touch-icon-114-precomposed.png" />
+    <Content Include="img\apple-touch-icon-144-precomposed.png" />
+    <Content Include="img\apple-touch-icon-57-precomposed.png" />
+    <Content Include="img\apple-touch-icon-72-precomposed.png" />
+    <Content Include="img\famfamfam-icons.png" />
+    <Content Include="img\favicon.png" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -117,5 +128,24 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="css\" />
+    <Folder Include="modules\" />
+    <Folder Include="font\" />
+    <Folder Include="img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="font\FontAwesome.otf" />
+    <None Include="font\fontawesome-webfont.eot" />
+    <None Include="font\fontawesome-webfont.ttf" />
+    <None Include="font\fontawesome-webfont.woff" />
+    <None Include="font\iconic_fill.eot" />
+    <None Include="font\iconic_fill.otf" />
+    <None Include="font\iconic_fill.svg" />
+    <None Include="font\iconic_fill.ttf" />
+    <None Include="font\iconic_fill.woff" />
+    <None Include="font\iconic_stroke.eot" />
+    <None Include="font\iconic_stroke.otf" />
+    <None Include="font\iconic_stroke.svg" />
+    <None Include="font\iconic_stroke.ttf" />
+    <None Include="font\iconic_stroke.woff" />
   </ItemGroup>
 </Project>
