@@ -18,9 +18,16 @@ namespace Aicl.Calamar.DAL
 		public static Gasto Crear(RepositoryProxy proxy , CrearGasto gasto)
 		{
 			if(!gasto.Fecha.HasValue) gasto.Fecha= DateTime.Today;
+
 			var c = new Gasto();
 			c.PopulateWith(gasto);
+
+			proxy.BeginDbTransaction();
 			proxy.DbCmd.InsertAndAssertId(c);
+
+			ActualizarSaldos (proxy, c);
+
+			proxy.CommitDbTransaction();
 			return c;
 		}
 
@@ -57,13 +64,51 @@ namespace Aicl.Calamar.DAL
 		{	
 			var c = new Gasto();
 			c.PopulateWith(gasto);
+			proxy.BeginDbTransaction();
+			ActualizarSaldosAlBorrar(proxy, gasto.Id);
+			ActualizarSaldos(proxy, c );
 			proxy.DbCmd.UpdateOnly(c, f=> new {f.Descripcion, f.Beneficiario, f.Valor, f.IdFuente, f.IdConcepto}, f=> f.Id==gasto.Id);
+			proxy.CommitDbTransaction();
 			return proxy.DbCmd.FirstOrDefault<Gasto>(f=>f.Id== gasto.Id);
 		}
 		
 		public static void Borrar(RepositoryProxy proxy , BorrarGasto gasto)
 		{
+			proxy.BeginDbTransaction();
+
+			ActualizarSaldosAlBorrar(proxy, gasto.Id);
 			proxy.DbCmd.Delete<Gasto>(f=>f.Id==gasto.Id);
+
+			proxy.CommitDbTransaction();
+
+		}
+
+		static void ActualizarSaldos (RepositoryProxy proxy, Gasto gasto)
+		{
+			var concepto = proxy.DbCmd.First<Concepto> (f => f.Id == gasto.IdConcepto);
+			concepto.Acumulado += gasto.Valor;
+			proxy.DbCmd.UpdateOnly (concepto, f => new {
+				f.Acumulado
+			}, f => f.Id == gasto.IdConcepto);
+			var fuente = proxy.DbCmd.First<Fuente> (f => f.Id == gasto.IdFuente);
+			fuente.Salidas += gasto.Valor;
+			proxy.DbCmd.UpdateOnly (fuente, f => new {
+				f.Salidas
+			}, f => f.Id == gasto.IdFuente);
+		}
+
+		static void ActualizarSaldosAlBorrar (RepositoryProxy proxy , int id)
+		{
+			var oldGasto= proxy.DbCmd.First<Gasto>(f=>f.Id==id);
+
+			var concepto = proxy.DbCmd.First<Concepto>(f=>f.Id== oldGasto.IdConcepto);
+			concepto.Acumulado-= oldGasto.Valor;
+			proxy.DbCmd.UpdateOnly(concepto, f=> new {f.Acumulado}, f=>f.Id== oldGasto.IdConcepto);
+			
+			var fuente = proxy.DbCmd.First<Fuente>(f=>f.Id== oldGasto.IdFuente);
+			fuente.Salidas-=oldGasto.Valor;
+			proxy.DbCmd.UpdateOnly(fuente, f=> new {f.Salidas}, f=>f.Id== oldGasto.IdFuente);
+
 		}
 
 	}
