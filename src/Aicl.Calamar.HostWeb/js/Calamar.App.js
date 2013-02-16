@@ -32,37 +32,37 @@
 			document.body.appendChild(Cayita.UI.Div.element(this.get_$topNavBar()));
 		},
 		$showUserMenu: function(lr) {
-			var um = Cayita.UI.Div.createContainerFluid$1(null, Function.mkdel(this, function(fluid) {
-				Cayita.UI.Div.createRowFluid$1(fluid, Function.mkdel(this, function(row) {
-					Cayita.UI.Div.$ctor1(row, Function.mkdel(this, function(span) {
+			var um = Cayita.UI.Div.createContainerFluid$1(null, ss.mkdel(this, function(fluid) {
+				Cayita.UI.Div.createRowFluid$1(fluid, ss.mkdel(this, function(row) {
+					Cayita.UI.Div.$ctor1(row, ss.mkdel(this, function(span) {
 						span.className = 'span2';
-						Cayita.UI.Div.$ctor1(span, Function.mkdel(this, function(nav) {
+						Cayita.UI.Div.$ctor1(span, ss.mkdel(this, function(nav) {
 							nav.className = 'well sidebar-nav';
-							Cayita.UI.HtmlList.creatNavList$1(nav, Function.mkdel(this, function(list) {
+							Cayita.UI.HtmlList.creatNavList$1(nav, ss.mkdel(this, function(list) {
 								Cayita.UI.ListItem.createNavHeader(list, 'Menu');
 								for (var $t1 = 0; $t1 < lr.Roles.length; $t1++) {
 									var role = { $: lr.Roles[$t1] };
-									Cayita.UI.ListItem.createNavListItem$1(list, '#', role.$.Title, Function.mkdel({ role: role, $this: this }, function(li, anchor) {
-										$(anchor).click(Function.mkdel({ role: this.role, $this: this.$this }, function(e) {
+									Cayita.UI.ListItem.createNavListItem$1(list, '#', role.$.Title, ss.mkdel({ role: role, $this: this }, function(li, anchor) {
+										$(anchor).click(ss.mkdel({ role: this.role, $this: this.$this }, function(e) {
 											e.preventDefault();
 											Cayita.UI.ElementBase.jSelect(this.$this.get_$work()).empty();
-											$.getScript(this.role.$.Directory + '.js', Function.mkdel(this.$this, function(o) {
+											$.getScript(this.role.$.Directory + '.js', ss.mkdel(this.$this, function(o) {
 												MainModule.execute(Cayita.UI.Div.element(this.get_$work()));
 											}));
 										}));
 									}));
 								}
-								Cayita.UI.ListItem.createNavListItem$1(list, '#', 'Cerrar Session', Function.mkdel(this, function(li1, anchor1) {
-									$(anchor1).click(Function.mkdel(this, function(e1) {
+								Cayita.UI.ListItem.createNavListItem$1(list, '#', 'Cerrar Session', ss.mkdel(this, function(li1, anchor1) {
+									$(anchor1).click(ss.mkdel(this, function(e1) {
 										e1.preventDefault();
 										$(document.body).empty();
 										$.post('api/Logout', {}, function(cb) {
 											console.log('callback', cb);
-										}, 'json').success(Function.mkdel(this, function(d) {
+										}, 'text').success(ss.mkdel(this, function(d) {
 											this.$showTopNavBar();
 											this.$showLoginForm();
 										})).error(function(request, textStatus, error) {
-											console.log('request', request);
+											console.log('Logout Error request:', request);
 											Cayita.UI.Div.createAlertErrorBefore(document.body, textStatus + ': ' + request.statusText);
 										}).always(function(a) {
 										});
@@ -88,7 +88,7 @@
 			$t1.action = 'api/Login?format=json';
 			$t1.method = 'post';
 			var form = new $LoginForm($t2, $t1);
-			form.set_onLogin(Function.mkdel(this, this.$onLogin));
+			form.set_onLogin(ss.mkdel(this, this.$onLogin));
 			form.show();
 		}
 	};
@@ -145,15 +145,15 @@
 			Cayita.UI.ElementBase.jSelect(this.get_$container()).remove();
 		},
 		show: function() {
-			this.set_$container(Cayita.UI.Div.createContainer$1(null, Function.mkdel(this, function(container) {
-				Cayita.UI.Div.createRow$1(container, Function.mkdel(this, function(row) {
+			this.set_$container(Cayita.UI.Div.createContainer$1(null, ss.mkdel(this, function(container) {
+				Cayita.UI.Div.createRow$1(container, ss.mkdel(this, function(row) {
 					//
-					Cayita.UI.Div.$ctor1(row, Function.mkdel(this, function(element) {
+					Cayita.UI.Div.$ctor1(row, ss.mkdel(this, function(element) {
 						element.className = 'span4 offset4 well';
 						var $t1 = Cayita.UI.LegendConfig.$ctor();
 						$t1.text = 'Por favor inicie session';
 						Cayita.UI.Legend.$ctor(element, $t1);
-						Cayita.UI.Form.$ctor1(element, Function.mkdel(this, function(fe) {
+						Cayita.UI.Form.$ctor1(element, ss.mkdel(this, function(fe) {
 							fe.action = this.get_config().action;
 							fe.method = this.get_config().method;
 							var cg = Cayita.UI.Div.createControlGroup(fe);
@@ -173,17 +173,17 @@
 								b.className = 'btn btn-info btn-block';
 								$(b).button.defaults.loadingText = '  autenticando....';
 							});
-							var vo = ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.setSubmitHandler(ValidateOptions.$ctor(), Function.mkdel(this, function(f) {
+							var vo = ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.setSubmitHandler(ValidateOptions.$ctor(), ss.mkdel(this, function(f) {
 								Cayita.UI.ButtonBase.showLoadingText(bt);
 								$.post(f.action, $(f).serialize(), function(cb) {
 									console.log('callback', cb);
-								}, 'json').success(Function.mkdel(this, function(d) {
+								}, 'json').success(ss.mkdel(this, function(d) {
 									this.set_userName(Cayita.UI.InputText.element(user).value);
-									if (ss.isValue(this.get_onLogin())) {
+									if (!ss.staticEquals(this.get_onLogin(), null)) {
 										this.get_onLogin()(d, this);
 									}
 								})).error(function(request, textStatus, error) {
-									Cayita.UI.Div.createAlertErrorBefore(fe.elements[0], textStatus + ': ' + (request.statusText.startsWith('ValidationException') ? 'Usario/clave no validos' : request.statusText));
+									Cayita.UI.Div.createAlertErrorBefore(fe.elements[0], textStatus + ': ' + (ss.startsWithString(request.statusText, 'ValidationException') ? 'Usario/clave no validos' : request.statusText));
 								}).always(function(a) {
 									Cayita.UI.ButtonBase.resetLoadingText(bt);
 								});
@@ -204,6 +204,6 @@
 			this.get_parent().appendChild(Cayita.UI.Div.element(this.get_$container()));
 		}
 	};
-	Type.registerClass(global, 'App', $App, Object);
-	Type.registerClass(global, 'LoginForm', $LoginForm, Object);
+	ss.registerClass(global, 'App', $App);
+	ss.registerClass(global, 'LoginForm', $LoginForm);
 })();

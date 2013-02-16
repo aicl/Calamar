@@ -105,6 +105,9 @@
     <Content Include="font\iconic_stroke.svg" />
     <Content Include="font\iconic_stroke.ttf" />
     <Content Include="font\iconic_stroke.woff" />
+    <Content Include="js\jquery-1.9.1.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\autonumeric-1.8.3.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">

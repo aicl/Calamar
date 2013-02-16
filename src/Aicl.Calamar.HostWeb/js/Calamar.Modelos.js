@@ -71,7 +71,7 @@
 		$this.Info = null;
 		$this.Permissions = [];
 		$this.Roles = [];
-		$this.Info = new (Type.makeGenericType(ss.Dictionary$2, [String, String]))();
+		$this.Info = new (ss.makeGenericType(ss.Dictionary$2, [String, String]))();
 		return $this;
 	};
 	////////////////////////////////////////////////////////////////////////////////
@@ -126,17 +126,17 @@
 			$this.Html = null;
 			$this.TotalCount = null;
 			$this.Result = [];
-			$this.Result.add(data);
+			ss.add($this.Result, data);
 			return $this;
 		};
-		Type.registerGenericClassInstance($type, $Calamar_Model_BLResponse$1, [T], function() {
+		ss.registerGenericClassInstance($type, $Calamar_Model_BLResponse$1, [T], function() {
 			return Object;
 		}, function() {
 			return [];
 		});
 		return $type;
 	};
-	Type.registerGenericClass(global, 'Calamar.Model.BLResponse$1', $Calamar_Model_BLResponse$1, 1);
+	ss.registerGenericClass(global, 'Calamar.Model.BLResponse$1', $Calamar_Model_BLResponse$1, 1);
 	////////////////////////////////////////////////////////////////////////////////
 	// Aicl.Calamar.Scripts.Modelos.Concepto
 	var $Calamar_Model_Concepto = function() {
@@ -187,24 +187,24 @@
 		if (ss.isNullOrUndefined(conceptos)) {
 			return $Calamar_Model_Concepto.$ctor();
 		}
-		var cp = Enumerable.from(conceptos).firstOrDefault($Calamar_Model_Concepto.getDefaultValue(), function(f) {
+		var cp = Enumerable.from(conceptos).firstOrDefault(function(f) {
 			return f.Id === $this.IdConcepto;
-		});
+		}, ss.getDefaultValue($Calamar_Model_Concepto));
 		return cp || $Calamar_Model_Concepto.$ctor();
 	};
 	$Calamar_Model_Gasto.GetFuente = function($this, fuente) {
 		if (ss.isNullOrUndefined(fuente)) {
 			return $Calamar_Model_Fuente.$ctor();
 		}
-		var cp = Enumerable.from(fuente).firstOrDefault($Calamar_Model_Fuente.getDefaultValue(), function(f) {
+		var cp = Enumerable.from(fuente).firstOrDefault(function(f) {
 			return f.Id === $this.IdFuente;
-		});
+		}, ss.getDefaultValue($Calamar_Model_Fuente));
 		return cp || $Calamar_Model_Fuente.$ctor();
 	};
 	$Calamar_Model_Gasto.$ctor = function() {
 		var $this = {};
 		$this.Id = 0;
-		$this.Fecha = 0;
+		$this.Fecha = new Date(0);
 		$this.IdConcepto = 0;
 		$this.IdFuente = 0;
 		$this.Valor = 0;
@@ -224,7 +224,7 @@
 	$Calamar_Model_Ingreso.$ctor = function() {
 		var $this = {};
 		$this.Id = 0;
-		$this.Fecha = 0;
+		$this.Fecha = new Date(0);
 		$this.IdConcepto = 0;
 		$this.IdFuente = 0;
 		$this.Valor = 0;
@@ -241,7 +241,7 @@
 	$Calamar_Model_PagoCredito.$ctor = function() {
 		var $this = {};
 		$this.Id = 0;
-		$this.Fecha = 0;
+		$this.Fecha = new Date(0);
 		$this.IdFuenteOrigen = 0;
 		$this.IdFuenteDestino = 0;
 		$this.IdConcepto = 0;
@@ -260,24 +260,24 @@
 	$Calamar_Model_Traslado.$ctor = function() {
 		var $this = {};
 		$this.Id = 0;
-		$this.Fecha = 0;
+		$this.Fecha = new Date(0);
 		$this.IdFuenteOrigen = 0;
 		$this.IdFuenteDestino = 0;
 		$this.Valor = 0;
 		$this.Descripcion = null;
 		return $this;
 	};
-	Type.registerClass(global, 'Calamar.Auht.AuthPermission', $Calamar_Auht_AuthPermission, Object);
-	Type.registerClass(global, 'Calamar.Auht.AuthRole', $Calamar_Auht_AuthRole, Object);
-	Type.registerClass(global, 'Calamar.Auht.AuthRolePermission', $Calamar_Auht_AuthRolePermission, Object);
-	Type.registerClass(global, 'Calamar.Auht.AuthRoleUser', $Calamar_Auht_AuthRoleUser, Object);
-	Type.registerClass(global, 'Calamar.Auht.LoginResponse', $Calamar_Auht_LoginResponse, Object);
-	Type.registerClass(global, 'Calamar.Auht.RolePermission', $Calamar_Auht_RolePermission, Object);
-	Type.registerClass(global, 'Calamar.Auht.UserRole', $Calamar_Auht_UserRole, Object);
-	Type.registerClass(global, 'Calamar.Model.Concepto', $Calamar_Model_Concepto, Object);
-	Type.registerClass(global, 'Calamar.Model.Fuente', $Calamar_Model_Fuente, Object);
-	Type.registerClass(global, 'Calamar.Model.Gasto', $Calamar_Model_Gasto, Object);
-	Type.registerClass(global, 'Calamar.Model.Ingreso', $Calamar_Model_Ingreso, Object);
-	Type.registerClass(global, 'Calamar.Model.PagoCredito', $Calamar_Model_PagoCredito, Object);
-	Type.registerClass(global, 'Calamar.Model.Traslado', $Calamar_Model_Traslado, Object);
+	ss.registerClass(global, 'Calamar.Auht.AuthPermission', $Calamar_Auht_AuthPermission);
+	ss.registerClass(global, 'Calamar.Auht.AuthRole', $Calamar_Auht_AuthRole);
+	ss.registerClass(global, 'Calamar.Auht.AuthRolePermission', $Calamar_Auht_AuthRolePermission);
+	ss.registerClass(global, 'Calamar.Auht.AuthRoleUser', $Calamar_Auht_AuthRoleUser);
+	ss.registerClass(global, 'Calamar.Auht.LoginResponse', $Calamar_Auht_LoginResponse);
+	ss.registerClass(global, 'Calamar.Auht.RolePermission', $Calamar_Auht_RolePermission);
+	ss.registerClass(global, 'Calamar.Auht.UserRole', $Calamar_Auht_UserRole);
+	ss.registerClass(global, 'Calamar.Model.Concepto', $Calamar_Model_Concepto);
+	ss.registerClass(global, 'Calamar.Model.Fuente', $Calamar_Model_Fuente);
+	ss.registerClass(global, 'Calamar.Model.Gasto', $Calamar_Model_Gasto);
+	ss.registerClass(global, 'Calamar.Model.Ingreso', $Calamar_Model_Ingreso);
+	ss.registerClass(global, 'Calamar.Model.PagoCredito', $Calamar_Model_PagoCredito);
+	ss.registerClass(global, 'Calamar.Model.Traslado', $Calamar_Model_Traslado);
 })();

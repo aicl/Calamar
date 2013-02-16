@@ -100,16 +100,16 @@
 				div.className = 'span6 offset3 well';
 				$(div).hide();
 			});
-			this.set_$searchDiv(Cayita.UI.Div.$ctor1(null, Function.mkdel(this, function(searchdiv) {
+			this.set_$searchDiv(Cayita.UI.Div.$ctor1(null, ss.mkdel(this, function(searchdiv) {
 				searchdiv.className = 'span6 offset3 nav';
 				var inputFecha = Cayita.UI.InputText.element(Cayita.UI.InputText.$ctor2(searchdiv, function(ip) {
 					ip.className = 'input-medium search-query';
 					ip.setAttribute('data-mask', '99.99.9999');
 					ip.setAttribute('placeholder', 'dd.mm.aaaa');
 				}));
-				Cayita.UI.IconButton.$ctor(searchdiv, Function.mkdel(this, function(abn, ibn) {
+				Cayita.UI.IconButton.$ctor(searchdiv, ss.mkdel(this, function(abn, ibn) {
 					ibn.className = 'icon-search icon-large';
-					$(abn).click(Function.mkdel(this, function(evt) {
+					$(abn).click(ss.mkdel(this, function(evt) {
 						if (!cayita.fn.isDateFormatted(inputFecha.value)) {
 							Cayita.UI.Div.createAlertErrorAfter(Cayita.UI.Div.element(this.get_$searchDiv()), 'Digite una fecha valida');
 							return;
@@ -117,26 +117,26 @@
 						this.$loadGastos(cayita.fn.toServerDate(inputFecha.value));
 					}));
 				}));
-				this.set_$bNew(Cayita.UI.IconButton.$ctor(searchdiv, Function.mkdel(this, function(abn1, ibn1) {
+				this.set_$bNew(Cayita.UI.IconButton.$ctor(searchdiv, ss.mkdel(this, function(abn1, ibn1) {
 					ibn1.className = 'icon-plus-sign icon-large';
-					$(abn1).click(Function.mkdel(this, function(evt1) {
+					$(abn1).click(ss.mkdel(this, function(evt1) {
 						Cayita.UI.ElementBase.fadeIn(this.get_$formDiv());
 						Cayita.UI.ElementBase.fadeOut(this.get_$gridDiv());
 						Cayita.UI.Form.element(this.get_$form()).reset();
 						Cayita.UI.ButtonBase.element(this.get_$bDelete()).disabled = true;
 					}));
 				})));
-				this.set_$bDelete(Cayita.UI.IconButton.$ctor(searchdiv, Function.mkdel(this, function(abn2, ibn2) {
+				this.set_$bDelete(Cayita.UI.IconButton.$ctor(searchdiv, ss.mkdel(this, function(abn2, ibn2) {
 					ibn2.className = 'icon-remove-sign icon-large';
 					abn2.disabled = true;
-					$(abn2).click(Function.mkdel(this, function(evt2) {
+					$(abn2).click(ss.mkdel(this, function(evt2) {
 						this.$removeRow();
 					}));
 				})));
-				this.set_$bList(Cayita.UI.IconButton.$ctor(searchdiv, Function.mkdel(this, function(abn3, ibn3) {
+				this.set_$bList(Cayita.UI.IconButton.$ctor(searchdiv, ss.mkdel(this, function(abn3, ibn3) {
 					ibn3.className = 'icon-reorder icon-large';
 					abn3.disabled = true;
-					$(abn3).click(Function.mkdel(this, function(evt3) {
+					$(abn3).click(ss.mkdel(this, function(evt3) {
 						Cayita.UI.ElementBase.fadeOut(this.get_$formDiv());
 						Cayita.UI.ElementBase.fadeIn(this.get_$gridDiv());
 						abn3.disabled = true;
@@ -144,9 +144,9 @@
 				})));
 			})));
 			Cayita.UI.ElementBase.appendTo(this.get_$searchDiv(), parent);
-			this.set_$formDiv(Cayita.UI.Div.$ctor1(null, Function.mkdel(this, function(formdiv) {
+			this.set_$formDiv(Cayita.UI.Div.$ctor1(null, ss.mkdel(this, function(formdiv) {
 				formdiv.className = 'span6 offset3 well';
-				this.set_$form(Cayita.UI.Form.$ctor1(formdiv, Function.mkdel(this, function(f) {
+				this.set_$form(Cayita.UI.Form.$ctor1(formdiv, ss.mkdel(this, function(f) {
 					f.className = 'form-horizontal';
 					f.action = 'api/Gasto/';
 					f.method = 'post';
@@ -154,7 +154,7 @@
 						e.name = 'Id';
 						$(e).hide();
 					});
-					var cbConcepto = Cayita.UI.SelectField.$ctor1(f, Function.mkdel(this, function(e1) {
+					var cbConcepto = Cayita.UI.SelectField.$ctor1(f, ss.mkdel(this, function(e1) {
 						e1.name = 'IdConcepto';
 						e1.className = 'span12';
 						Cayita.UI.HtmlOption.$ctor1(e1, function(o) {
@@ -164,7 +164,7 @@
 						});
 						this.$loadConceptos(e1);
 					}));
-					var cbFuente = Cayita.UI.SelectField.$ctor1(f, Function.mkdel(this, function(e2) {
+					var cbFuente = Cayita.UI.SelectField.$ctor1(f, ss.mkdel(this, function(e2) {
 						e2.name = 'IdFuente';
 						e2.className = 'span12';
 						Cayita.UI.HtmlOption.$ctor1(e2, function(o1) {
@@ -196,13 +196,13 @@
 						$(b).button.defaults.loadingText = ' Guardando ...';
 						b.className = 'btn btn-info btn-block';
 					});
-					var vo = ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.setSubmitHandler(ValidateOptions.$ctor(), Function.mkdel(this, function(form) {
+					var vo = ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.addRule(ValidateOptions.setSubmitHandler(ValidateOptions.$ctor(), ss.mkdel(this, function(form) {
 						Cayita.UI.ButtonBase.showLoadingText(bt);
-						var action = form.action + (String.isNullOrEmpty(Cayita.UI.InputBase.value(inputId)) ? 'create' : 'update');
+						var action = form.action + (ss.isNullOrEmptyString(Cayita.UI.InputBase.value(inputId)) ? 'create' : 'update');
 						$.post(action, $(form).autoNumeric('getString'), function(cb) {
-						}, 'json').success(Function.mkdel(this, function(d) {
+						}, 'json').success(ss.mkdel(this, function(d) {
 							console.log('Success guardar gasto', d);
-							if (String.isNullOrEmpty(Cayita.UI.InputBase.value(inputId))) {
+							if (ss.isNullOrEmptyString(Cayita.UI.InputBase.value(inputId))) {
 								this.$appendRow(d.Result[0]);
 							}
 							else {
@@ -233,9 +233,9 @@
 				})));
 			})));
 			Cayita.UI.ElementBase.appendTo(this.get_$formDiv(), parent);
-			this.set_$gridDiv(Cayita.UI.Div.$ctor1(null, Function.mkdel(this, function(gdiv) {
+			this.set_$gridDiv(Cayita.UI.Div.$ctor1(null, ss.mkdel(this, function(gdiv) {
 				gdiv.className = 'span10 offset1';
-				this.set_$tableGastos(Cayita.UI.HtmlTable.$ctor2(gdiv, Function.mkdel(this, function(table) {
+				this.set_$tableGastos(Cayita.UI.HtmlTable.$ctor2(gdiv, ss.mkdel(this, function(table) {
 					this.$initTable(table);
 				})));
 				$(gdiv).hide();
@@ -245,11 +245,11 @@
 		$loadConceptos: function(cbox) {
 			this.set_$listConceptos([]);
 			$.get('api/Concepto/read', { Tipo: 'Egreso', SoloDetalles: true }, function(cb) {
-			}, 'json').success(Function.mkdel(this, function(data) {
+			}, 'json').success(ss.mkdel(this, function(data) {
 				this.set_$listConceptos(data.Result);
 				for (var $t1 = 0; $t1 < data.Result.length; $t1++) {
 					var d = { $: data.Result[$t1] };
-					Cayita.UI.HtmlOption.$ctor1(cbox, Function.mkdel({ d: d }, function(option) {
+					Cayita.UI.HtmlOption.$ctor1(cbox, ss.mkdel({ d: d }, function(option) {
 						option.value = this.d.$.Id.toString();
 						option.text = this.d.$.Nombre;
 					}));
@@ -262,11 +262,11 @@
 		$loadFuentes: function(cbox) {
 			this.set_$listFuentes([]);
 			$.get('api/Fuente/read', { SoloDetalles: true }, function(cb) {
-			}, 'json').success(Function.mkdel(this, function(data) {
+			}, 'json').success(ss.mkdel(this, function(data) {
 				this.set_$listFuentes(data.Result);
 				for (var $t1 = 0; $t1 < data.Result.length; $t1++) {
 					var d = { $: data.Result[$t1] };
-					Cayita.UI.HtmlOption.$ctor1(cbox, Function.mkdel({ d: d }, function(option) {
+					Cayita.UI.HtmlOption.$ctor1(cbox, ss.mkdel({ d: d }, function(option) {
 						option.value = this.d.$.Id.toString();
 						option.text = this.d.$.Nombre;
 					}));
@@ -280,35 +280,35 @@
 			var table = Cayita.UI.HtmlTable.element(this.get_$tableGastos());
 			this.$initListGastos();
 			$.get('api/Gasto/read', { FechaDesde: date }, function(cb) {
-			}, 'json').success(Function.mkdel(this, function(data) {
+			}, 'json').success(ss.mkdel(this, function(data) {
 				this.set_$listGastos(data.Result);
 				Cayita.UI.Ext.load$2(Calamar.Model.Gasto).call(null, table, this.get_$listGastos(), this.get_$columns(), 'Id');
-				$('#' + table.id + ' tr').addClass('rowlink');
-			})).error(Function.mkdel(this, function(request, textStatus, error) {
+				$('tbody tr', table).addClass('rowlink');
+			})).error(ss.mkdel(this, function(request, textStatus, error) {
 				Cayita.UI.Ext.load$2(Calamar.Model.Gasto).call(null, table, this.get_$listGastos(), this.get_$columns(), 'Id');
 				console.log('error', request, textStatus, error);
 				Cayita.UI.Div.createAlertErrorBefore(table, textStatus + ': ' + request.statusText);
-			})).always(Function.mkdel(this, function(a) {
+			})).always(ss.mkdel(this, function(a) {
 				Cayita.UI.ElementBase.hide(this.get_$formDiv());
 				Cayita.UI.ElementBase.fadeIn(this.get_$gridDiv());
 			}));
 		},
 		$removeRow: function() {
 			$.post('api/Gasto/destroy', { Id: this.get_$selectedGasto().index }, function(cb) {
-			}, 'json').success(Function.mkdel(this, function(d) {
+			}, 'json').success(ss.mkdel(this, function(d) {
 				console.log('Success Remove gasto', d);
 				$(this.get_$selectedGasto().row).remove();
-				var gasto = Enumerable.from(this.get_$listGastos()).first(Function.mkdel(this, function(f) {
+				var gasto = Enumerable.from(this.get_$listGastos()).first(ss.mkdel(this, function(f) {
 					return f.Id === parseInt(this.get_$selectedGasto().index);
 				}));
-				this.get_$listGastos().remove(gasto);
+				ss.remove(this.get_$listGastos(), gasto);
 				this.get_$selectedGasto().index = '';
 				this.get_$selectedGasto().row = null;
 				Cayita.UI.ButtonBase.element(this.get_$bDelete()).disabled = true;
 				Cayita.UI.ButtonBase.element(this.get_$bList()).disabled = true;
 				Cayita.UI.ElementBase.hide(this.get_$formDiv());
 				Cayita.UI.ElementBase.fadeIn(this.get_$gridDiv());
-			})).error(Function.mkdel(this, function(request, textStatus, error) {
+			})).error(ss.mkdel(this, function(request, textStatus, error) {
 				console.log('request', request);
 				Cayita.UI.Div.createAlertErrorBefore(Cayita.UI.Form.element(this.get_$form()).elements[0], textStatus + ': ' + request.statusText);
 			})).always(function(a) {
@@ -316,10 +316,10 @@
 		},
 		$appendRow: function(data) {
 			var table = Cayita.UI.HtmlTable.element(this.get_$tableGastos());
-			this.get_$listGastos().add(data);
+			ss.add(this.get_$listGastos(), data);
 			Cayita.UI.Ext.createRow(Calamar.Model.Gasto).call(null, table, data, this.get_$columns(), 'Id');
-			$('#' + table.id + ' tr').removeClass('info');
-			var row = $('#' + table.id + ' tr').last().addClass('rowlink info').get(0);
+			$('tbody tr', table).removeClass('info');
+			var row = $('tbody tr', table).last().addClass('rowlink info').get(0);
 			this.get_$selectedGasto().index = row.getAttribute('index');
 			this.get_$selectedGasto().row = row;
 			Cayita.UI.ButtonBase.element(this.get_$bDelete()).disabled = true;
@@ -341,16 +341,16 @@
 			table.className = 'table table-striped table-hover table-condensed';
 			table.setAttribute('data-provides', 'rowlink');
 			Cayita.UI.Ext.createHeader(Calamar.Model.Gasto).call(null, table, this.get_$columns());
-			$('#' + table.id + ' tr').live('click', Function.mkdel(this, function(e) {
+			$(table).on('click', 'tbody tr', ss.mkdel(this, function(e) {
 				console.log('event click row e', e);
 				var row = e.currentTarget;
-				$('#' + table.id + ' tr').removeClass('info');
+				$('tbody tr', table).removeClass('info');
 				$(row).addClass('info');
 				this.get_$selectedGasto().index = row.getAttribute('index');
 				this.get_$selectedGasto().row = row;
-				var gasto = Enumerable.from(this.get_$listGastos()).firstOrDefault(Calamar.Model.Gasto.getDefaultValue(), Function.mkdel(this, function(f) {
+				var gasto = Enumerable.from(this.get_$listGastos()).firstOrDefault(ss.mkdel(this, function(f) {
 					return f.Id === parseInt(this.get_$selectedGasto().index);
-				}));
+				}), ss.getDefaultValue(Calamar.Model.Gasto));
 				Cayita.UI.ButtonBase.element(this.get_$bDelete()).disabled = false;
 				Cayita.UI.ButtonBase.element(this.get_$bList()).disabled = false;
 				Cayita.UI.Form.element(this.get_$form()).reset();
@@ -362,33 +362,33 @@
 		$defineTableColumns: function() {
 			this.set_$columns([]);
 			var $t2 = this.get_$columns();
-			var $t1 = Type.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
+			var $t1 = ss.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
 			$t1.header = Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(function(cell) {
 				Cayita.UI.Anchor.$ctor1(cell, function(a) {
 					a.innerText = 'Concepto';
 				});
 			}));
-			$t1.value = Function.mkdel(this, function(f) {
-				return Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(Function.mkdel(this, function(cell1) {
-					Cayita.UI.Anchor.$ctor1(cell1, Function.mkdel(this, function(a1) {
+			$t1.value = ss.mkdel(this, function(f) {
+				return Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(ss.mkdel(this, function(cell1) {
+					Cayita.UI.Anchor.$ctor1(cell1, ss.mkdel(this, function(a1) {
 						a1.innerText = Calamar.Model.Gasto.GetConcepto(f, this.get_$listConceptos()).Nombre;
 					}));
 				})));
 			});
-			$t2.add($t1);
+			ss.add($t2, $t1);
 			var $t4 = this.get_$columns();
-			var $t3 = Type.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
+			var $t3 = ss.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
 			$t3.header = Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(function(cell2) {
 				cell2.innerText = 'Fuente';
 			}));
-			$t3.value = Function.mkdel(this, function(f1) {
-				return Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(Function.mkdel(this, function(cell3) {
+			$t3.value = ss.mkdel(this, function(f1) {
+				return Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(ss.mkdel(this, function(cell3) {
 					cell3.innerText = Calamar.Model.Gasto.GetFuente(f1, this.get_$listFuentes()).Nombre;
 				})));
 			});
-			$t4.add($t3);
+			ss.add($t4, $t3);
 			var $t6 = this.get_$columns();
-			var $t5 = Type.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
+			var $t5 = ss.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
 			$t5.header = Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(function(cell4) {
 				cell4.innerText = 'Valor';
 				cell4.style.textAlign = 'right';
@@ -400,9 +400,9 @@
 					$(cell5).autoNumeric('init');
 				}));
 			};
-			$t6.add($t5);
+			ss.add($t6, $t5);
 			var $t8 = this.get_$columns();
-			var $t7 = Type.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
+			var $t7 = ss.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
 			$t7.header = Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(function(cell6) {
 				cell6.innerText = 'Pagado a';
 			}));
@@ -411,9 +411,9 @@
 					cell7.innerText = f3.Beneficiario;
 				}));
 			};
-			$t8.add($t7);
+			ss.add($t8, $t7);
 			var $t10 = this.get_$columns();
-			var $t9 = Type.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
+			var $t9 = ss.makeGenericType(Cayita.UI.TableColumn$1, [Calamar.Model.Gasto]).$ctor();
 			$t9.header = Cayita.UI.TableCell.element(Cayita.UI.TableCell.$ctor1(function(cell8) {
 				cell8.innerText = 'Detalle';
 			}));
@@ -422,7 +422,7 @@
 					cell9.innerText = f4.Descripcion;
 				}));
 			};
-			$t10.add($t9);
+			ss.add($t10, $t9);
 		},
 		$initListGastos: function() {
 			this.set_$listGastos([]);
@@ -432,5 +432,5 @@
 	$MainModule.execute = function(parent) {
 		(new $MainModule()).$paint(parent);
 	};
-	Type.registerClass(global, 'MainModule', $MainModule, Object);
+	ss.registerClass(global, 'MainModule', $MainModule);
 })();
